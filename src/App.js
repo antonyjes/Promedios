@@ -1,11 +1,12 @@
 import { useState } from "react";
 import ScorePercent from "./components/ScorePercent";
 
-function App() {
-  const [components, setComponents] = useState([]);
+function App() {  
+  const [averageFinal, setAverageFinal] = useState(0);
+  const [components, setComponents] = useState([<ScorePercent key={"1a"} setAverageFinal={setAverageFinal} averageFinal={averageFinal} />]);
 
   const handleAddComponent = () => {
-    setComponents([...components, <ScorePercent />]);
+    setComponents([...components, <ScorePercent setAverageFinal={setAverageFinal} averageFinal={averageFinal} />]);
   };
 
   return (
@@ -16,11 +17,11 @@ function App() {
         </h1>
       </div>
       <div className="p-5 items-center justify-center">
-        <ScorePercent />
-        <ScorePercent />
-        <ScorePercent />
-        <ScorePercent />
-        {components}
+        {
+          components.map((component, index) => (
+            <ScorePercent key={index} setAverageFinal={setAverageFinal} averageFinal={averageFinal}/>
+          ))
+        }
       </div>
       <button
         onClick={() => handleAddComponent()}
@@ -28,6 +29,24 @@ function App() {
       >
         Add Component
       </button>
+      <div className="w-full">
+        <label
+          for="average"
+          class="block text-sm font-medium leading-6 text-gray-900"
+        >
+          Average
+        </label>
+        <div class="relative mt-2 rounded-md shadow-sm">
+          <input
+            type="number"
+            name="average"
+            id="average"
+            class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            value={averageFinal}
+            readOnly
+          />
+        </div>
+      </div>
     </div>
   );
 }
