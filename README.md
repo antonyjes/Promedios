@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ## DEMO
 
-(https://main--promedios-1c75c7.netlify.app/)
+https://main--promedios-1c75c7.netlify.app/
 
 ### `npm start`
 
